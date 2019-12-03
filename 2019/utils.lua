@@ -26,4 +26,26 @@ function utils.print_table(tbl, show_index)
     end
 end
 
+-- From here: https://stackoverflow.com/questions/1426954/split-string-in-lua
+function utils.split(str, delim)
+    if delim == nil then
+        return str
+    end
+
+    local words = {}
+    for w in str:gmatch("([^"..delim.."]+)") do
+        table.insert(words, w)
+    end
+
+    return words
+end
+
+function utils.copy_table(tbl)
+    local copy = {}
+    for _, k in ipairs(tbl) do
+        table.insert(copy, k)
+    end
+    return copy
+end
+
 return utils
