@@ -4,7 +4,7 @@ package.path = package.path .. ";../?.lua"
 local Utils = require("utils")
 
 function main()
-    local filename = "test.txt"
+    local filename = "input.txt"
     local f = Utils.load_file(filename)
     local opcodes = Utils.split(f[1], ",")
 
@@ -68,7 +68,7 @@ function intcode(master)
             local jmp = p1 and opcodes[addr1 + 1] or addr1
             local target = p2 and opcodes[addr2 + 1] or addr2
             if tonumber(jmp) ~= 0 then
-                pc = tonumber(target)
+                pc = tonumber(target) + 1
             else
                 pc = pc + 3
             end
@@ -80,7 +80,7 @@ function intcode(master)
             local jmp = p1 and opcodes[addr1 + 1] or addr1
             local target = p2 and opcodes[addr2 + 1] or addr2
             if tonumber(jmp) == 0 then
-                pc = tonumber(target)
+                pc = tonumber(target) + 1
             else
                 pc = pc + 3
             end
