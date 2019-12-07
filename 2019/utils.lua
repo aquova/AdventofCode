@@ -48,4 +48,24 @@ function utils.copy_table(tbl)
     return copy
 end
 
+function utils.in_tbl(elem, tbl)
+    for _, k in ipairs(tbl) do
+        if elem == k then
+            return true
+        end
+    end
+
+    return false
+end
+
+function utils.index_of(elem, tbl)
+    for i, k in ipairs(tbl) do
+        if elem == k then
+            return i
+        end
+    end
+
+    return nil
+end
+
 return utils

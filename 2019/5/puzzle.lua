@@ -1,4 +1,4 @@
--- AOC 2019 Day 2
+-- AOC 2019 Day 5
 -- Simulating a computer
 package.path = package.path .. ";../?.lua"
 local Utils = require("utils")
