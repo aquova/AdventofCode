@@ -10,23 +10,41 @@ function main()
     local lf = layer_factory()
 
     local layers = {}
+    local index = 1
     for i = 1, #f, LAYER_SIZE do
         local data = f:sub(i, i + LAYER_SIZE - 1)
         local new_layer = lf:new(data)
-        table.insert(layers, new_layer)
+        layers[index] = new_layer
+        index = index + 1
     end
 
-    local fewest_zero_index = 0
-    local fewest_zeros = LAYER_SIZE + 1
-    for i, layer in ipairs(layers) do
-        local count = layer:count_digits(0)
-        if count < fewest_zeros then
-            fewest_zeros = count
-            fewest_zero_index = i
+    -- Part 1:
+    -- local fewest_zero_index = 0
+    -- local fewest_zeros = LAYER_SIZE + 1
+    -- for i, layer in ipairs(layers) do
+    --     local count = layer:count_digits(0)
+    --     if count < fewest_zeros then
+    --         fewest_zeros = count
+    --         fewest_zero_index = i
+    --     end
+    -- end
+    -- print(layers[fewest_zero_index]:count_digits(1) * layers[fewest_zero_index]:count_digits(2))
+
+    -- Part 2:
+    local image = {}
+    for i = 1, LAYER_SIZE do
+        table.insert(image, 2)
+    end
+
+    for index = 1, #layers do
+        for i = 1, LAYER_SIZE do
+            if image[i] == 2 then
+                image[i] = layers[index]:get_pixel(i)
+            end
         end
     end
 
-    print(layers[fewest_zero_index]:count_digits(1) * layers[fewest_zero_index]:count_digits(2))
+    print_image(image, PIC.HEIGHT, PIC.WIDTH)
 end
 
 function layer_factory()
@@ -43,7 +61,7 @@ function layer_factory()
     function layer:count_digits(digit)
         local count = 0
         for i = 1, #self.data do
-            if tonumber(self.data:sub(i, i)) == digit then
+            if self:get_pixel(i) == digit then
                 count = count + 1
             end
         end
@@ -51,7 +69,22 @@ function layer_factory()
         return count
     end
 
+    function layer:get_pixel(offset)
+        return tonumber(self.data:sub(offset, offset))
+    end
+
     return layer
+end
+
+function print_image(image, height, width)
+    local pixels = { [0] = "⬜ ", "⬛ ", "X "}
+    for row = 0, height - 1 do
+        text = ""
+        for col = 0, width - 1 do
+            text = text .. pixels[image[col + row * width + 1]]
+        end
+        print(text)
+    end
 end
 
 main()

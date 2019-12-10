@@ -68,4 +68,17 @@ function utils.index_of(elem, tbl)
     return nil
 end
 
+function utils.gen_2d_array(width, height, default_val)
+    local grid = {}
+    for i = 1, height do
+        local row = {}
+        for j = 1, width do
+            table.insert(row, default_val)
+        end
+        table.insert(grid, row)
+    end
+
+    return grid
+end
+
 return utils
