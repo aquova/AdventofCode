@@ -17,21 +17,9 @@ function main()
         cpus[i] = Intcode:new(opcodes)
     end
 
-    local cpu_ptr = 0
-    local amp = 0
     local input = 0
-    while true do
-        output = cpus[cpu_ptr + 1]:execute(input)
-        if cpu_ptr == 5 then
-            if output then
-                print(amp)
-                break
-            elseif output > amp then
-                amp = output
-            end
-        end
-        input = output
-        cpu_ptr = (cpu_ptr + 1) % 5
+    for i = 1, 5 do
+        input = cpus[i]:execute(input)
     end
 end
 
