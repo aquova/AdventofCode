@@ -1,0 +1,12 @@
+[package]
+name = "aoc-2020"
+version = "0.1.0"
+authors = ["aquova <abrick912@gmail.com>"]
+edition = "2018"
+
+[dev-dependencies]
+criterion = "0.3.3"
+
+[[bench]]
+name = "aoc_benchmark"
+harness = false
