@@ -13,3 +13,15 @@ pub fn parse_lines_as_u32(filename: &str) -> Vec<u32> {
 
     input
 }
+
+pub fn read_lines(filename: &str) -> Vec<String> {
+    let mut input: Vec<String> = Vec::new();
+
+    let file = File::open(filename).unwrap();
+    let reader = BufReader::new(file);
+    for line in reader.lines() {
+        input.push(line.unwrap());
+    }
+
+    input
+}
