@@ -30,7 +30,7 @@ impl FetchDigit for u32 {
     }
 }
 
-pub fn aoc() {
+pub fn day4() -> Option<u32> {
     let mut i = INPUT_START;
     let mut passwords = 0;
     'pass_loop: while i <= INPUT_END {
@@ -67,5 +67,5 @@ pub fn aoc() {
         i += 1;
     }
 
-    println!("{}", passwords);
+    Some(passwords)
 }
