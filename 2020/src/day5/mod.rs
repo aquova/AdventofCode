@@ -46,16 +46,16 @@ fn calc_id(line: &str) -> u32 {
     let mut col = 0;
     for i in 0..7 {
         let c = line.chars().nth(i).unwrap();
-        let diff = NUM_ROWS / (2 << i);
         if c == 'B' {
+            let diff = NUM_ROWS / (2 << i);
             row += diff;
         }
     }
 
     for i in 7..10 {
         let c = line.chars().nth(i).unwrap();
-        let diff = NUM_COLS / (2 << (i - 7));
         if c == 'R' {
+            let diff = NUM_COLS / (2 << (i - 7));
             col += diff;
         }
     }
