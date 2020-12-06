@@ -26,8 +26,8 @@ pub fn read_lines(filename: &str) -> Vec<String> {
     input
 }
 
-pub fn parse_csv_as_u32(filename: &str) -> Vec<u32> {
-    let mut input: Vec<u32> = Vec::new();
+pub fn parse_csv_as_i32(filename: &str) -> Vec<i32> {
+    let mut input: Vec<i32> = Vec::new();
 
     let file = File::open(filename).unwrap();
     let reader = BufReader::new(file);
@@ -35,7 +35,7 @@ pub fn parse_csv_as_u32(filename: &str) -> Vec<u32> {
         let l = line.unwrap();
         let csv = l.split(",");
         for v in csv {
-            input.push(v.parse::<u32>().unwrap());
+            input.push(v.parse::<i32>().unwrap());
         }
     }
 
