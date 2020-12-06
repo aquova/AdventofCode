@@ -25,3 +25,24 @@ pub fn read_lines(filename: &str) -> Vec<String> {
 
     input
 }
+
+pub fn read_lines_strip_newlines(filename: &str) -> Vec<String> {
+    let mut input: Vec<String> = Vec::new();
+    let mut curr_str: String = String::new();
+
+    let file = File::open(filename).unwrap();
+    let reader = BufReader::new(file);
+    for line in reader.lines() {
+        let l = line.unwrap();
+
+        if l.len() == 0 {
+            input.push(curr_str.clone());
+            curr_str.clear();
+        } else {
+            curr_str = format!("{} {}", curr_str, l);
+        }
+    }
+    input.push(curr_str);
+
+    input
+}
