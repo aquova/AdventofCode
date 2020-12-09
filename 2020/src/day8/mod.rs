@@ -1,7 +1,7 @@
 use crate::utils::read_lines;
 
 pub fn day8p1() -> Option<i32> {
-    let input = read_lines("src/day8/input.txt");
+    let input: Vec<_> = include_str!("input.txt").lines().collect();
     let mut acc = 0;
     let mut pc = 0;
     let mut visited: Vec<usize> = Vec::new();
