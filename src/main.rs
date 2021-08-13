@@ -6,7 +6,7 @@ mod utils;
 use aoc2018::*;
 
 fn main() {
-    if let Some(answer) = day2::day2p2() {
+    if let Some(answer) = day3::day3p2() {
         println!("{}", answer);
     } else {
         println!("No solution found");
